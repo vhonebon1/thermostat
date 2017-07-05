@@ -20,15 +20,24 @@ describe("Thermostat", function() {
 
   describe('up', function() {
     it ('increases the temperature', function() {
-      thermostat.up(5)
-      expect(thermostat.temperature).toEqual(25)
+      thermostat.up()
+      expect(thermostat.temperature).toEqual(21)
+    });
+    it ('cannot go above maximum temperature', function() {
+      thermostat.temperature = 25;
+      expect(function() {thermostat.up()}).toThrowError('Cannot raise above maximum')
     });
   });
 
   describe('down', function() {
     it ('decreases the temperature', function() {
-      thermostat.down(5)
-      expect(thermostat.temperature).toEqual(15)
+      thermostat.down()
+      expect(thermostat.temperature).toEqual(19)
+    });
+    
+    it ('cannot go below minimum temperature', function() {
+      thermostat.temperature = 10;
+      expect(function() {thermostat.down()}).toThrowError('Cannot go below minimum')
     });
   });
 
@@ -69,19 +78,22 @@ describe("Thermostat", function() {
 
   describe('checkUsage', function() {
     it ('checks that the current energy usage is on low', function() {
-      thermostat.down(5);
+      [1,2,3].forEach(function(i) {
+        thermostat.down();
+      });
       thermostat.checkUsage()
       expect(thermostat.usage).toEqual("low-usage");
     });
 
     it ('checks that the current energy usage is on medium', function() {
-      thermostat.up(4);
       thermostat.checkUsage()
       expect(thermostat.usage).toEqual("medium-usage");
     });
 
     it ('checks that the current energy usage is on high', function() {
-      thermostat.up(7);
+      [1,2,3,4,5].forEach(function(i) {
+        thermostat.up();
+      });
       thermostat.checkUsage()
       expect(thermostat.usage).toEqual("high-usage");
     });

@@ -6,26 +6,36 @@ function Thermostat() {
   this.usage = "medium-usage";
 }
 
-Thermostat.prototype.up = function(num) {
-  this.temperature = this.temperature + num;
+Thermostat.prototype.up = function() {
+  if (this.temperature === this.maximum) {
+    throw new Error ('Cannot raise above maximum')
+  }
+  this.temperature = this.temperature + 1;
 }
 
-Thermostat.prototype.down = function(num) {
-  this.temperature = this.temperature - num;
+Thermostat.prototype.down = function() {
+  if (this.temperature === this.MINIMUM) {
+    throw new Error ('Cannot go below minimum')
+  }
+  this.temperature = this.temperature - 1;
 }
 
 Thermostat.prototype.setMaxTemp = function() {
   if (this.powerSavingMode == false)  {
-  this.maximum = 32;
+    this.maximum = 32;
+  } else {
+    this.maximum = 25;
   }
 }
 
 Thermostat.prototype.turnPowerSavingOff = function() {
   this.powerSavingMode = false;
+  this.setMaxTemp();
 }
 
 Thermostat.prototype.turnPowerSavingOn = function() {
   this.powerSavingMode = true;
+  this.setMaxTemp();
 }
 
 Thermostat.prototype.reset = function() {

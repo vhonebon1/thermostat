@@ -1,46 +1,45 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script src="../src/Thermostat.js" type="text/javascript"></script>
-    <!-- <script>
-      var temperature = 20;
-      document.write(temperature);
-    </script>
-    <script>
-      var usage = "medium-usage";
-      document.write(usage);
-    </script>
-    <script type ="text/javascript">
-      function Up() {
-        this.temperature = this.temperature + 1
-      }
-    </script>
-    <script type ="text/javascript">
-      function Down() {
-        this.temperature = this.temperature - 1
-      }
-    </script>
-    <script type ="text/javascript">
-      function Reset() {
-        this.temperature = 20
-      }
-    </script>
-    <script type ="text/javascript">
-      function turnPowerSavingOn() {
-        this.powerSavingMode = true;
-      }
-    </script>
-    <script type ="text/javascript">
-      function turnPowerSavingOff() {
-        this.powerSavingMode = false;
-      }
-    </script> -->
+    <title> Thermostat </title>
+
   </head>
   <body>
-    <button class="button" type ="button" onclick="Up()">Turn temp up</button>
-    <button class="button" type ="button" onclick="Down()">Turn temp down</button>
-    <button class="button" type ="button" onclick="Reset()">Reset temp</button>
-    <button class="button" type ="button" onclick="turnPowerSavingOn()">PSM on</button>
-    <button class="button" type ="button" onclick="turnPowerSavingOff()">PSM off</button>
+    <script src='jquery.js'></script>
+    <section>
+      <p id="temperature"></p>
+      <p id="usage"></p>
+      <button id="up" type ="button">Turn temp up</button>
+      <button id="down" type ="button">Turn temp down</button>
+      <button id="reset" type ="button">Reset temp</button>
+      <button id="PSMon" type ="button">PSM on</button>
+      <button id="PSMoff" type ="button">PSM off</button>
+  </section>
+    <script src="../src/Thermostat.js" type="text/javascript"></script>
+    <script>
+      $(document).ready(function(){
+        var thermostat = new Thermostat();
+        $('#temperature').text(thermostat.temperature);
+        $('#usage').text(thermostat.usage);
+        $('#up').on('click', function() {
+          thermostat.up();
+          $('#temperature').text(thermostat.temperature);
+        })
+        $('#down').on('click', function() {
+          thermostat.down();
+          $('#temperature').text(thermostat.temperature);
+        })
+        $('#reset').on('click', function() {
+          thermostat.reset();
+          $('#temperature').text(thermostat.temperature);
+        })
+        $('#PSMon').on('click', function() {
+          thermostat.turnPowerSavingOn();
+        })
+        $('#PSMoff').on('click', function() {
+          thermostat.turnPowerSavingOff();
+        })
+      });
+    </script>
   </body>
 </html>
