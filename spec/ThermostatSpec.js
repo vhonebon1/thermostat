@@ -14,6 +14,10 @@ describe("Thermostat", function() {
     expect(thermostat.temperature).toEqual(20);
   });
 
+  it ('initializes with a medium-usage', function() {
+    expect(thermostat.usage).toEqual("medium-usage");
+  });
+
   describe('up', function() {
     it ('increases the temperature', function() {
       thermostat.up(5)
@@ -48,6 +52,14 @@ describe("Thermostat", function() {
     });
   });
 
+  describe('turnPowerSavingOn', function() {
+    it("turns the power saving mode on", function() {
+      thermostat.turnPowerSavingOff()
+      thermostat.turnPowerSavingOn()
+      expect(thermostat.powerSavingMode).toEqual(true)
+    });
+  });
+
   describe('reset', function() {
     it ('resets the temperature to 20 degrees', function() {
       thermostat.reset();
@@ -58,17 +70,20 @@ describe("Thermostat", function() {
   describe('checkUsage', function() {
     it ('checks that the current energy usage is on low', function() {
       thermostat.down(5);
-      expect(thermostat.checkUsage()).toEqual("low-usage");
+      thermostat.checkUsage()
+      expect(thermostat.usage).toEqual("low-usage");
     });
 
     it ('checks that the current energy usage is on medium', function() {
       thermostat.up(4);
-      expect(thermostat.checkUsage()).toEqual("medium-usage");
+      thermostat.checkUsage()
+      expect(thermostat.usage).toEqual("medium-usage");
     });
 
     it ('checks that the current energy usage is on high', function() {
       thermostat.up(7);
-      expect(thermostat.checkUsage()).toEqual("high-usage");
+      thermostat.checkUsage()
+      expect(thermostat.usage).toEqual("high-usage");
     });
   });
 });
