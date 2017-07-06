@@ -21,14 +21,20 @@
         var thermostat = new Thermostat();
         $('#temperature').text(thermostat.temperature);
         $('#usage').text(thermostat.usage);
+        // var usage = $('#usage').text(thermostat.usage);
+        // if(usage == 'low-usage') {
+        // $(usage).css("color", "green");
+        // }
         $('#powerSavingModeStatus').text(thermostat.powerSavingModeStatus);
         $('#up').on('click', function() {
-          thermostat.up();
+          thermostat.up(); thermostat.checkUsage();
           $('#temperature').text(thermostat.temperature);
+          $('#usage').text(thermostat.usage);
         })
         $('#down').on('click', function() {
-          thermostat.down();
+          thermostat.down(); thermostat.checkUsage();
           $('#temperature').text(thermostat.temperature);
+          $('#usage').text(thermostat.usage);
         })
         $('#reset').on('click', function() {
           thermostat.reset();
@@ -36,8 +42,7 @@
         })
         $('#power_saving_mode').on('click', function() {
           thermostat.switchPowerSavingMode();
-          thermostat.powerSavingModeStatus
-          console.log(thermostat.powerSavingMode)
+          $('#powerSavingModeStatus').text(thermostat.powerSavingModeStatus);
         })
       });
     </script>
