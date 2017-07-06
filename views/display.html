@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title> Thermostat </title>
+    <h1> Thermostat </h1>
 
   </head>
   <body>
@@ -9,11 +9,11 @@
     <section>
       <p id="temperature"></p>
       <p id="usage"></p>
+      <p id="powerSavingModeStatus"></p>
       <button id="up" type ="button">Turn temp up</button>
       <button id="down" type ="button">Turn temp down</button>
       <button id="reset" type ="button">Reset temp</button>
-      <button id="PSMon" type ="button">PSM on</button>
-      <button id="PSMoff" type ="button">PSM off</button>
+      <button id="power_saving_mode" type ="button">Power Saving Mode</button>
   </section>
     <script src="../src/Thermostat.js" type="text/javascript"></script>
     <script>
@@ -21,6 +21,7 @@
         var thermostat = new Thermostat();
         $('#temperature').text(thermostat.temperature);
         $('#usage').text(thermostat.usage);
+        $('#powerSavingModeStatus').text(thermostat.powerSavingModeStatus);
         $('#up').on('click', function() {
           thermostat.up();
           $('#temperature').text(thermostat.temperature);
@@ -33,11 +34,10 @@
           thermostat.reset();
           $('#temperature').text(thermostat.temperature);
         })
-        $('#PSMon').on('click', function() {
-          thermostat.turnPowerSavingOn();
-        })
-        $('#PSMoff').on('click', function() {
-          thermostat.turnPowerSavingOff();
+        $('#power_saving_mode').on('click', function() {
+          thermostat.switchPowerSavingMode();
+          thermostat.powerSavingModeStatus
+          console.log(thermostat.powerSavingMode)
         })
       });
     </script>

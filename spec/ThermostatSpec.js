@@ -34,38 +34,25 @@ describe("Thermostat", function() {
       thermostat.down()
       expect(thermostat.temperature).toEqual(19)
     });
-    
+
     it ('cannot go below minimum temperature', function() {
       thermostat.temperature = 10;
       expect(function() {thermostat.down()}).toThrowError('Cannot go below minimum')
     });
   });
 
-  describe('setMaxTemp', function() {
-    it("sets the maximum temperature if power saving mode is on", function() {
-      spyOn(thermostat, "powerSavingMode").and.returnValue(true)
-      expect(thermostat.maximum).toEqual(25)
-    });
-
-    it("sets the maximum temperature if power saving mode is off", function() {
-      thermostat.turnPowerSavingOff()
-      thermostat.setMaxTemp()
-      expect(thermostat.maximum).toEqual(32)
-    });
-  });
-
-  describe('turnPowerSavingOff', function() {
-    it("turns the power saving mode off", function() {
-      thermostat.turnPowerSavingOff()
+  describe('switchPowerSavingMode', function() {
+    it("switches the power saving mode to off", function() {
+      thermostat.switchPowerSavingMode();
       expect(thermostat.powerSavingMode).toEqual(false)
+      expect(thermostat.powerSavingModeStatus).toEqual("Power saving off")
     });
-  });
 
-  describe('turnPowerSavingOn', function() {
-    it("turns the power saving mode on", function() {
-      thermostat.turnPowerSavingOff()
-      thermostat.turnPowerSavingOn()
+    it("switches the power saving mode to on", function() {
+      thermostat.switchPowerSavingMode();
+      thermostat.switchPowerSavingMode();
       expect(thermostat.powerSavingMode).toEqual(true)
+      expect(thermostat.powerSavingModeStatus).toEqual("Power saving on")
     });
   });
 
