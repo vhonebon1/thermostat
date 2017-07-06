@@ -3,12 +3,13 @@ function Thermostat() {
   this.MINIMUM = 10;
   this.maximum = 25;
   this.powerSavingMode = true;
-  this.usage = "medium-usage";
+  this.usage = "Medium-usage";
   this.powerSavingModeStatus = "Power saving on";
 }
 
 Thermostat.prototype.up = function() {
   if (this.temperature === this.maximum) {
+    alert ('Cannot raise above maximum')
     throw new Error ('Cannot raise above maximum')
   }
   this.temperature = this.temperature + 1;
@@ -16,6 +17,7 @@ Thermostat.prototype.up = function() {
 
 Thermostat.prototype.down = function() {
   if (this.temperature === this.MINIMUM) {
+    alert ('Cannot go below minimum')
     throw new Error ('Cannot go below minimum')
   }
   this.temperature = this.temperature - 1;
@@ -37,11 +39,11 @@ Thermostat.prototype.reset = function() {
 }
 
 Thermostat.prototype.checkUsage = function() {
-  if (this.temperature < 18) {
-    this.usage = "low-usage";
+  if (this.temperature <= 18) {
+    this.usage = "Low-usage";
   } else if (this.temperature > 18 && this.temperature < 25) {
-    this.usage = "medium-usage";
+    this.usage = "Medium-usage";
   } else {
-    this.usage = "high-usage";
+    this.usage = "High-usage";
   }
 }

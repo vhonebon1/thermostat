@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<div class="container-fluid">
 <head>
   <h1> Thermostat </h1>
 </head>
 <body>
   <script src='jquery.js'></script>
   <section>
-    <p id="temperature"></p>
+    <p id="temperature" class="temp"></p>
     <p id="usage"></p>
     <p id="powerSavingModeStatus"></p>
     <button id="up" type ="button">Turn temp up</button>
@@ -45,6 +49,7 @@
     <h2>Current temperature: <span id="current-temperature"></span></h2>
     <section>
       <select id="current-city">
+        <option value="blank">Choose city</option>
         <option value="london">London</option>
         <option value="newyork">New York</option>
         <option value="paris">Paris</option>
@@ -61,4 +66,26 @@
     </script>
   </section>
 </body>
+</div>
+<style>
+h1 {
+  font-size: 70px;
+  color: green;
+}
+h2 {
+  font-size: 50px;
+  color: orange;
+}
+p[id="temperature"] {
+  font-size: 120px;
+}
+p[id="usage"] {
+  font-size: 50px;
+  color: red;
+}
+p[id="powerSavingModeStatus"] {
+  font-size: 50px;
+  color: blue;
+}
+</style>
 </html>

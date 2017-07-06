@@ -69,12 +69,12 @@ describe("Thermostat", function() {
         thermostat.down();
       });
       thermostat.checkUsage()
-      expect(thermostat.usage).toEqual("low-usage");
+      expect(thermostat.usage).toEqual("Low-usage");
     });
 
     it ('checks that the current energy usage is on medium', function() {
       thermostat.checkUsage()
-      expect(thermostat.usage).toEqual("medium-usage");
+      expect(thermostat.usage).toEqual("Medium-usage");
     });
 
     it ('checks that the current energy usage is on high', function() {
@@ -82,7 +82,7 @@ describe("Thermostat", function() {
         thermostat.up();
       });
       thermostat.checkUsage()
-      expect(thermostat.usage).toEqual("high-usage");
+      expect(thermostat.usage).toEqual("High-usage");
     });
   });
 });
