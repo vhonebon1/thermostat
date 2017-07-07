@@ -15,7 +15,7 @@ describe("Thermostat", function() {
   });
 
   it ('initializes with a medium-usage', function() {
-    expect(thermostat.usage).toEqual("medium-usage");
+    expect(thermostat.usage).toEqual("Medium-usage");
   });
 
   describe('up', function() {
@@ -25,6 +25,7 @@ describe("Thermostat", function() {
     });
     it ('cannot go above maximum temperature', function() {
       thermostat.temperature = 25;
+      spyOn(window, 'alert').and.returnValue(true)
       expect(function() {thermostat.up()}).toThrowError('Cannot raise above maximum')
     });
   });
@@ -37,6 +38,7 @@ describe("Thermostat", function() {
 
     it ('cannot go below minimum temperature', function() {
       thermostat.temperature = 10;
+      spyOn(window, 'alert').and.returnValue(true)
       expect(function() {thermostat.down()}).toThrowError('Cannot go below minimum')
     });
   });
